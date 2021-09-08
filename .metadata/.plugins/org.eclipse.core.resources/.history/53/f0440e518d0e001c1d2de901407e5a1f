@@ -1,0 +1,106 @@
+
+fieldset{
+    width: 25%;
+    height: 100%;
+    margin: auto;
+    border: 2px solid green;
+    border-radius: 5px;
+    margin-top: 40px;
+}
+
+legend{
+   font-family: Helvetica, sans-serif;
+   font-size: 16px;
+   font-weight: bold;
+}
+
+.texto{
+   margin-top: 20px;
+   margin-bottom:10px;   
+   text-align: center;
+   font-family: Helvetica, sans-serif;
+   font-size: 16px;
+   font-weight: bold;
+}
+
+input[type=email], input[type=password]{
+    border: 2px solid green;
+    border-radius: 5px;
+}
+
+input[type=email]:focus, input[type=password]:focus{
+    background-color: #ffef01;
+    border: 2px solid green;
+}
+
+.larguraTexto{
+	height: 30px;
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 10px;
+    
+}
+
+.centro_img{
+	width: 20% ;
+	text-align: center;
+	border: solid 1px;
+	color:yellow; 
+}
+
+.centro{
+	text-align: center;
+	margin-top: 30px;
+}
+
+.bt{
+    border: 2px solid green;
+    border-radius: 5px;
+    background-color: green;
+    color: #FFF;
+    padding: 5px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 4px;
+    margin-left: 5px;
+}
+
+.bt:hover{
+    background-color: #FFF;
+    color: green;
+    cursor: pointer;
+}
+
+ ul{
+    background-color: green;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li{
+    float: left;
+}
+
+li a {
+	display: inline-block;
+    color:#FFF;
+    padding: 16px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: yellow;
+    color:#FFF;
+    text-decoration: none;
+}
+
+
+
+
+
+

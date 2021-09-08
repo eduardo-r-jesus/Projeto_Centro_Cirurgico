@@ -1,0 +1,140 @@
+<%@page import="org.cc.dao.UsuarioDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manter Usuário</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+	<%@ include file="menu.jsp"%>
+
+	<%
+	Usuario u = new Usuario();
+
+	try {
+		int id = Integer.parseInt(request.getParameter("id"));
+		UsuarioDao dao = new UsuarioDao();
+		u = dao.getUsuario(id);
+	} catch (Exception e) {
+
+	}
+	%>
+
+
+	<div class="container">
+		<br>
+		<h2>Manter Usuário</h2>
+		<form name="form-usuario" id="form-usuario">
+			<input type="hidden" id="id" name="id" value="<%=u.getId()%>">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="email">E-mail:</label> <input type="email"
+						class="form-control" id="email" placeholder="E-mail do usuário."
+						name="email" value="<%=u.getEmail()%>">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="senha">Senha:</label> <input type="password"
+						class="form-control" id="senha" placeholder="Senha do usuário."
+						name="senha" value="<%=u.getSenha()%>">
+				</div>
+			</div>
+
+			<%
+			if (usuario != null && usuario.getPerfil().equals("administrador")) {
+			%>
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="Perfil">Perfil:</label>
+					<div class="form-control">
+						<input type="radio" id="administrador" name="perfil"
+							value="administrador" checked="checked"><label for="administrador">
+							Administrador</label> <input type="radio" class="espacamento"
+							id="operador" name="perfil" value="operador"><label
+							for="ope"> Operador</label> <input type="radio"
+							class="espacamento" id="estagiario" name="perfil"
+							value="estagiario"><label for="est"> Estagiário</label> <input
+							type="radio" class="espacamento" id="usuario" name="perfil"
+							value="usuario"><label for="usuario"> Usuário</label>
+					</div>
+				</div>
+			</div>
+			<%
+			} else {
+			%>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="Perfil">Perfil:</label>
+					<div class="form-control">
+						<input type="radio" id="usuario" name="perfil"
+							value="usuario" checked="checked"><label for="usuario"> Usuário</label>
+					</div>
+				</div>
+			</div>
+
+			<%
+			}
+			%>
+			<button type="submit" class="btn btn-primary">Gravar</button>
+			
+			<%                	
+                	if (usuario == null){ %>
+					<a href="formLogin.jsp" type="submit" class="btn btn-secondary"	value="voltar">Voltar</a>
+
+            <%
+            }else if(u.getId() > 0){
+    			%>		
+			
+			<a href="cadastrousuarioservlet?acao=excluir&id=<%=u.getId()%>" type="submit" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir o registro?')"	id="espacamento" value="Excluir">Apagar</a>
+			<%
+				}else{
+			%>
+			<input type="reset" class="btn btn-danger" value="Limpar">
+			<%
+				}
+           
+			%>	
+			
+			<%
+               if(usuario != null){
+               %>		
+			<button type="button" class="btn btn-secondary" >Novo</button>
+               <%
+               }
+               %> 
+		
+		</form>
+
+		<br>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th width="40%">Nome do Paciente</th>
+					<th width="30%">Status</th>
+					<th width="10%">Início Prevísto</th>
+					<th width="10%">Início da Cirurgia</th>
+					<th width="10%">Fim da Cirurgia</th>
+					<th width="10%">Saída Prevista</th>
+				</tr>
+			</thead>
+			<tbody id="corpo-tabela" style="cursor: pointer;">
+
+			</tbody>
+		</table>
+
+		<script type="text/javascript">
+			var tabela = localStorage.getItem('corpo-tabela');
+			document.getElementById("corpo-tabela").innerHTML = tabela;
+		</script>
+
+	</div>
+
+</body>
+</html>

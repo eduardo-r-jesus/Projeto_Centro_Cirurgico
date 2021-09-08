@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+	<div class="container">
+		<fieldset>
+			<legend>ACESSAR</legend>
+			<form action="loginservlet" method="post">
+			
+			<div class="texto">
+			<label for="email">E-mail:</label>
+			<input type="text" class="larguraTexto" id="email" name="email" autocomplete="off" placeholder="Digite o seu e-mail."> 
+			</div>
+			<label for="senha">Senha:</label> 
+			<input type="password"class="larguraTexto" id="senha" name="senha" placeholder="Digite sua senha."> 
+			<input type="submit" class="bt" value="Acessar">
+			
+			</form>
+		</fieldset>
+
+	</div>
+
+</body>
+</html>

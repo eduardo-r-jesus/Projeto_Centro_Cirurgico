@@ -1,0 +1,153 @@
+<%@page import="org.cc.dao.UsuarioDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manter Usuário</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+	<%@ include file="menu.jsp"%>
+
+	<%
+	if (usuario == null) {
+		response.sendRedirect("formLogin.jsp");
+	}
+	%>
+
+	<%
+	Usuario u = new Usuario();
+
+	try {
+		int id = Integer.parseInt(request.getParameter("id"));
+		UsuarioDao dao = new UsuarioDao();
+		u = dao.getUsuario(id);
+	} catch (Exception e) {
+
+	}
+	%>
+
+
+	<div class="container">
+		<br>
+		<h2>Manter Usuário</h2>
+		<form name="form-usuario" id="form-usuario"
+			action="ManterUsuarioServlet" method="Post">
+			<input type="hidden" id="id" name="id" value="<%=u.getId()%>">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="email">E-mail:</label> <input type="email"
+						class="form-control" id="email" placeholder="E-mail do usuário."
+						name="email" value="<%=u.getEmail()%>">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="senha">Senha:</label> <input type="password"
+						class="form-control" id="senha" placeholder="Senha do usuário."
+						name="senha" value="<%=u.getSenha()%>">
+				</div>
+			</div>
+
+			<%
+			if (usuario != null && usuario.getPerfil().equals("administrador")) {
+			%>
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="Perfil">Perfil:</label>
+					<div class="form-control">
+						<input type="radio" id="administrador" name="perfil"
+							value="administrador" checked="checked"><label
+							for="administrador"> Administrador</label> <input type="radio"
+							class="espacamento" id="operador" name="perfil" value="operador"><label
+							for="operador"> Operador</label> <input type="radio"
+							class="espacamento" id="estagiario" name="perfil"
+							value="estagiario"><label for="estagiario">
+							Estagiário</label>
+					</div>
+				</div>
+			</div>
+			<%
+			} else {
+			%>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="Perfil">Perfil:</label>
+					<div class="form-control" >
+						<input type="radio" id="administrador" name="perfil"
+							value="administrador" disabled="disabled"><label
+							for="administrador"> Administrador</label> <input type="radio"
+							class="espacamento" id="operador" name="perfil" value="operador"
+							disabled="disabled"><label for="operador">
+							Operador</label> <input type="radio" class="espacamento" id="estagiario"
+							name="perfil" value="estagiario" disabled="disabled"><label
+							for="estagiario"> Estagiário</label>
+					</div>
+				</div>
+			</div>
+
+			<%
+			}
+			%>
+			<button type="submit" class="btn btn-primary" value="Gravar">Gravar</button>
+
+			<%
+			if (usuario == null) {
+			%>
+			<a href="formLogin.jsp" type="submit" class="btn btn-secondary"
+				value="voltar">Voltar</a>
+
+			<%
+			} else if (u.getId() > 0) {
+			%>
+
+			<a href="ManterUsuarioServlet?acao=excluir&id=<%=u.getId()%>"
+				type="submit" class="btn btn-danger"
+				onclick="return confirm('Deseja realmente excluir o registro?')"
+				id="espacamento" value="Excluir">Apagar</a>
+			<%
+			} else {
+			%>
+			<input type="reset" class="btn btn-danger" value="Limpar">
+			<%
+			}
+			%>
+
+			<%
+			if (usuario != null) {
+			%>
+			<a href="formManterUsuario.jsp" type="submit" class="bt"	id="espacamento" value="Cadastrar">Novo Cadastro</a>
+			<%
+			}
+			%>
+
+		</form>
+		<br>
+		
+		<script type="text/javascript">
+		
+		var lsPerfil = document.getElementsByName("perfil");
+		for (i in lsPerfil) {
+			if (lsPerfil[i].value == '<%=u.getPerfil()%>') {
+					lsPerfil[i].setAttribute('checked', 'checked');
+				}
+			}
+		</script>
+
+		<%
+		if (usuario != null && usuario.getPerfil().equals("administrador")) {
+		%>
+			<%@ include file="formListaUsuario.jsp"%>
+		<%
+		}
+		%>
+
+	</div>
+
+</body>
+</html>

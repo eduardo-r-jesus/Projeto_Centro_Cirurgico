@@ -1,0 +1,46 @@
+package org.cc.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.cc.dao.UsuarioDao;
+import org.cc.model.Usuario;
+
+@WebServlet("/loginservlet")
+public class LoginServlet extends HttpServlet{
+	
+	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
+		String acao = req.getParameter("acao");
+
+		if (acao != null && acao.equals("sair")) {
+			req.getSession().removeAttribute("usuario");
+			res.sendRedirect("index.jsp");
+		} else {
+			String email = req.getParameter("emil");
+			String senha = req.getParameter("senha");
+
+			UsuarioDao usuDao = new UsuarioDao();
+			Usuario usu = usuDao.validarLogin(email, senha);
+
+			if (usu.getId() > 0) {
+				System.out.println("acessou");
+				//res.sendRedirect("index.jsp");
+				//req.getSession().setAttribute("usuario", usu);
+			} else {
+				System.out.println("sem acessos");
+				//res.sendRedirect("formLogin.jsp?erro");
+			}
+
+		}
+		
+	}
+
+	
+
+}

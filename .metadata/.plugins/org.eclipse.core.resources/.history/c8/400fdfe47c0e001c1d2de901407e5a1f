@@ -1,0 +1,7 @@
+package org.cc.servlet;
+
+@WebServlet("/loginservlet")
+public class LoginServlet extends HttpServlet{
+	  
+
+}

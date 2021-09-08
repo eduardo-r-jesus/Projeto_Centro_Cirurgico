@@ -1,0 +1,56 @@
+package org.cc.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.cc.conexao.Conexao;
+import org.cc.model.Usuario;
+
+public class UsuarioDao {
+		
+	public Usuario validarLogin(String email, String senha) {
+		Usuario u = new Usuario();
+
+		try {
+			Connection cont = Conexao.conectar();
+			PreparedStatement pst = cont.prepareStatement("select * from usuario where login = '"+login+"' and senha = '"+senha+"' ");
+			//pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				u.setId(rs.getInt("id_login"));
+				u.setLogin(rs.getString("login"));
+				u.setSenha(rs.getString("senha"));
+				u.setPerfil(rs.getString("perfil"));				
+			};
+			cont.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return u;
+	}
+	
+	public boolean alterarSenhaUsuario(Usuario objU) {
+		try {
+			Connection cont = Conexao.conectar();
+
+			String sql = "update login set senha = ? where id_login = ?";
+
+			PreparedStatement pst = cont.prepareStatement(sql);
+			pst.setString(1, objU.getSenha());
+			pst.setInt(2, objU.getId());
+			pst.execute();
+			pst.close();
+			cont.close();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+}

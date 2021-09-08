@@ -1,0 +1,63 @@
+package org.cc.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.cc.dao.UsuarioDao;
+import org.cc.model.Usuario;
+
+@WebServlet("/ManterUsuarioServlet")
+public class ManterUsuarioServlet extends HttpServlet {
+	
+	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
+		Usuario objU = new Usuario();
+
+		String acao = req.getParameter("acao");
+		res.setCharacterEncoding("UTF-8");
+		PrintWriter out = res.getWriter();
+		
+		if (acao != null && acao.equals("excluir")) {
+			objU.setId(Integer.parseInt(req.getParameter("id")));
+		} else {
+
+			objU.setEmail(req.getParameter("email"));
+			objU.setSenha(req.getParameter("senha"));
+			objU.setPerfil(req.getParameter("perfil"));
+			objU.setId(Integer.parseInt(req.getParameter("id")));
+		}
+		
+		UsuarioDao objUDao = new UsuarioDao();
+		
+		boolean validar = false;
+		
+		if (objU.getId() > 0) {
+			if (acao != null && acao.equals("excluir")) {
+				validar = objUDao.excluirUsuario(objU.getId());
+				out.print("Usuário excluído com sucesso!");
+			} else {
+				validar = objUDao.alterarUsuario(objU);
+				out.print("Usuário alterado com sucesso!");
+			}
+
+		} else {
+			validar = objUDao.cadastrarUsuario(objU);
+			out.print("Usuário cadastrado com sucesso!");
+		}
+		if (validar) {
+			res.sendRedirect("formManterUsuario.jsp");
+			PrintWriter saida = res.getWriter();
+			//out.print("Usuário cadastrado com sucesso!");
+		} else {
+			out.print("Erro ao gravar!");
+		}
+		
+	}
+
+}

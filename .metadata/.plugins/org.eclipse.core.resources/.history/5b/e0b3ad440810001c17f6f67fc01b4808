@@ -1,0 +1,101 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+	<%@ include file="menu.jsp"%>
+	<%
+	if (usuario == null) {
+		response.sendRedirect("formLogin.jsp");
+	}
+	%>
+
+	<div class="container">
+		<br>
+		<h2>Alterar Senha</h2>
+		<form name="form-alterarSenha" id="form-alterarSenha" action="AlterarSenhaServlet" method="Post">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="senhaAtual">E-mail:</label> <input type="password"
+						class="form-control" id="senhaAtual" placeholder="Senha atual.."
+						name="senhaAtual">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="senha">Senha:</label> <input type="password"
+						class="form-control" id="senha" placeholder="Senha do usuário."
+						name="senha" value="<%=u.getSenha()%>">
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary" value="Gravar">Gravar</button>
+	</div>
+
+
+
+	<fieldset>
+		<legend>ACESSAR</legend>
+		<img id="img-java" src="img/java.png"> 
+		<label for="senhaAtual">Senha Atual:</label> 
+		<input type="password" class="larguraTexto" id="senhaAtual" name="senhaAtual" placeholder="Digite sua senha atual"> 
+		<label for="senhaAtual">Nova Senha:</label> 
+		<input type="password" class="larguraTexto" id="novaSenha" name="novaSenha" placeholder="Digite sua nova senha"> 
+		<label for="senhaAtual">Confirmar Senha:</label> 
+		<input type="password" class="larguraTexto" id="confirmarSenha" name="confirmarSenha" placeholder="Digite a confirmação da sua nova senha"> 
+		<input type="submit" class="bt" value="Gravar" onclick="alterarSenha()">
+		<span style="background-color: blue; color: yellow;" id="msg"></span>
+	</fieldset>
+	<%
+	if (usuario == null) {
+	%>
+	<span id="cadastroUsuario"><a href="formCadastroUsuario.jsp"><b>Cadastrar
+				Usuário</b></a></span>
+	<%
+	}
+	%>
+
+	<script type="text/javascript">
+		function alterarSenha() {
+			var senhaAtual = document.getElementById("senhaAtual").value;
+			var novaSenha = document.getElementById("novaSenha").value;
+			var confirmarSenha = document.getElementById("confirmarSenha").value;
+
+			var parametros = "senhaAtual=" + senhaAtual;
+			parametros += "&novaSenha=" + novaSenha;
+			parametros += "&confirmarSenha=" + confirmarSenha;
+			acessarApi(parametros);
+		}
+
+		function acessarApi(parametros) {
+			const api = new XMLHttpRequest();
+			api.open("POST",
+					"http://localhost:8080/form-web/alterarsenhaservlet");
+			api.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			api.send(parametros);
+			api.onload = function() {
+				document.getElementById("msg").innerHTML = this.responseText;
+			}
+
+		}
+
+		//	alert("Login ou senha não encontrado");
+	</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
