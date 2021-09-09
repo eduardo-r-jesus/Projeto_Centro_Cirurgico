@@ -1,0 +1,61 @@
+package org.cc.model;
+
+public class Painel {
+	
+	private int id;
+	private String nome_paciente;
+	private String status;
+	private String local;
+	private String inicio_previsto;
+	private String inicio_cirurgia;
+	private String fim_cirurgia;
+	private String saida_prevista;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNome_paciente() {
+		return nome_paciente;
+	}
+	public void setNome_paciente(String nome_paciente) {
+		this.nome_paciente = nome_paciente;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getLocal() {
+		return local;
+	}
+	public void setLocal(String local) {
+		this.local = local;
+	}
+	public String getInicio_previsto() {
+		return inicio_previsto;
+	}
+	public void setInicio_previsto(String inicio_previsto) {
+		this.inicio_previsto = inicio_previsto;
+	}
+	public String getInicio_cirurgia() {
+		return inicio_cirurgia;
+	}
+	public void setInicio_cirurgia(String inicio_cirurgia) {
+		this.inicio_cirurgia = inicio_cirurgia;
+	}
+	public String getFim_cirurgia() {
+		return fim_cirurgia;
+	}
+	public void setFim_cirurgia(String fim_cirurgia) {
+		this.fim_cirurgia = fim_cirurgia;
+	}
+	public String getSaida_prevista() {
+		return saida_prevista;
+	}
+	public void setSaida_prevista(String saida_prevista) {
+		this.saida_prevista = saida_prevista;
+	}
+}

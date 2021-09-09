@@ -1,0 +1,123 @@
+<%@page import="org.cc.dao.PainelDao"%>
+<%@page import="org.cc.model.Painel"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gerenciar Painel Pacientes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<%@ include file="menu.jsp" %>
+
+<%
+	if (usuario == null) {
+		response.sendRedirect("formLogin.jsp");
+	}	
+
+	Painel pai = new Painel();
+		
+	try{	
+	int id = Integer.parseInt(request.getParameter("id"));
+	PainelDao paiDao = new PainelDao();
+	pai = paiDao.getRegistroPainel(id);
+	
+	}catch(Exception e){
+		
+	}	
+%>
+
+	<div class="container">
+		<br>
+		<h2>Gerenciar Painel dos Paciente no Centro Cirúrgico</h2>
+		<form name="form-paciente" id="form-paciente" action="GerenciarPainelServlet" method="Get">
+			<input type="hidden" id="id" name="id">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="nome">Nome Paciente:</label> <input type="text"
+						class="form-control" id="nome" placeholder="Nome do Paciente"
+						name="nome">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="nome">Status:</label> <select name="status" id="status"
+						class="form-control borda">
+						<option value="operatorio">Pré-Operatório</option>
+						<option value="sala-cirurgica">Em sala cirúrgica</option>
+						<option value="recuperacao">Em recuperação</option>
+						<option value="transferido">Transferído</option>
+					</select>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="local">Local:</label> <input type="text"
+						class="form-control" id="local" placeholder="Sala/Quarto"
+						name="local">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group  col-md-3">
+					<label for="inicioPrevisto">Início Prevísto:</label> <input
+						type="time" class="form-control" id="inicioPrevisto"
+						name="inicioPrevisto" size="20">
+				</div>
+				<div class="form-group  col-md-3">
+					<label for="inicioCirurgia">Início Cirurgia:</label> <input
+						type="time" class="form-control" id="inicioCirurgia"
+						name="inicioCirurgia" size="20">
+				</div>
+				<div class="form-group  col-md-3">
+					<label for="fimCirurgia">Fim daCirurgia:</label> <input
+						type="time" class="form-control" id="fimCirurgia"
+						name="fimCirurgia" size="20">
+				</div>
+				<div class="form-group  col-md-3">
+					<label for="saidaPrevista">Saída Prevísto:</label> <input
+						type="time" class="form-control" id="saidaPrevista"
+						name="saidaPrevista" size="20">
+				</div>
+			</div>
+			<a href="formCadastro.jsp" type="submit" class="bt"	id="espacamento" value="Cadastrar">Novo Cadastro</a>
+		
+			<%
+				if(pai.getId() > 0){
+			%>			
+			<input type="button" class="bt" value="Apagar" onclick="apagar(<%=pai.getId()%>)">
+			<%
+				}else{
+			%>
+			<input type="reset" class="bt" value="Limpar">
+			<%
+				}
+			%>			
+			<input type="button" class="bt" id="espacamento" value="Gravar" onclick="enviarDados()">
+		</form>
+
+		<br>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th width="40%">Nome do Paciente</th>
+					<th width="30%">Status</th>
+					<th width="10%">Início Prevísto</th>
+					<th width="10%">Início da Cirurgia</th>
+					<th width="10%">Fim da Cirurgia</th>
+					<th width="10%">Saída Prevista</th>
+				</tr>
+			</thead>
+			<tbody id="corpo-tabela" style="cursor: pointer;">
+
+			</tbody>
+		</table>
+
+		<script type="text/javascript">
+			var tabela = localStorage.getItem('corpo-tabela');
+			document.getElementById("corpo-tabela").innerHTML = tabela;
+		</script>
+
+	</div>
+
+</body>
+</html>

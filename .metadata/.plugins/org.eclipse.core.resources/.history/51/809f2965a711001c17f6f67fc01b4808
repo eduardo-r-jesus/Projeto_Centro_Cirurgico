@@ -1,0 +1,89 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="org.cc.model.Painel"%>
+<%@page import="org.cc.dao.PainelDao"%>
+<%@page import="java.util.List"%>
+<%@page import="org.cc.model.Usuario"%>
+<%@page import="org.cc.dao.UsuarioDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<head>
+<meta charset="UTF-8">
+<title>Listar Registros Painel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<h2>Listar Registros Painel</h2>
+<% 
+PrintWriter saida = response.getWriter();
+%>
+
+<table class="table table-success table-striped table-hover">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Nome Paciente</th>
+			<th>Status</th>
+			<th>Local</th>
+			<th>Início Prevísto</th>
+			<th>Início Cirurgia</th>
+			<th>Fim daCirurgia</th>
+			<th>Saída Prevísto</th>
+		</tr>
+	</thead>
+		<%
+		PainelDao objPaiDao = new PainelDao();
+		List<Painel> ls = objPaiDao.listarRegistrosPainel();
+
+		if (ls.size() > 0) {
+			for (Painel painel : ls) {
+		%>
+
+		<tr
+			onclick="window.location.href = 'formGerenciaPainel.jsp?id=<%=painel.getId()%>'">
+			<td><%=painel.getId()%></td>
+			<td><%=painel.getNomePaciente()%></td>
+	
+			<%
+			if(painel.getStatus().equals("operatorio")){
+			%>	
+				<td class="operatorio"><%=painel.getStatus()%></td>
+			<%				
+			}else if(painel.getStatus().equals("sala-cirurgica")){%>
+				<td class="salaCirurgia"><%=painel.getStatus()%></td>
+			<% 
+			}else if(painel.getStatus().equals("recuperacao")){%>
+				<td class="recuperacao"><%=painel.getStatus()%></td>
+			<% 
+			}else if(painel.getStatus().equals("transferido")){%>
+				<td class="transferido"><%=painel.getStatus()%></td>
+			<%	
+			}else{%>
+				<td><%=painel.getStatus()%></td>
+			<%}%>
+			<td><%=painel.getLocal()%></td>
+			<td><%=painel.getInicioPrevisto()%></td>
+			<td><%=painel.getInicioCirurgia()%></td>
+			<td><%=painel.getFimCirurgia()%></td>
+			<td><%=painel.getSaidaPrevista()%></td>
+		</tr>
+
+		<%
+		}
+		%>
+
+
+
+		<%
+		} else {
+		%>
+		<tr>
+			<td colspan="8" style="text-align: center">"Nenhuma informação
+				encontrada!"</td>
+		</tr>
+		<%
+		}
+		%>
+</table>

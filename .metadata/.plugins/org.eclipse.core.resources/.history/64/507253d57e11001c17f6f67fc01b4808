@@ -1,0 +1,28 @@
+package org.cc.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import org.cc.conexao.Conexao;
+
+public class PainelDao {
+	
+	public boolean excluirRegistroPacienePainel(int id) {
+		try {
+			Connection cont = Conexao.conectar();
+
+			String sql = "delete from painel where id = ?";
+
+			PreparedStatement pst = cont.prepareStatement(sql);
+			pst.setInt(1, id);
+			pst.execute();
+			pst.close();
+			cont.close();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+}

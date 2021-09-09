@@ -1,0 +1,15 @@
+package org.cc.model;
+
+public class Painel {
+	
+	private int id;
+	private String nomePaciente;
+	private String status;
+	private String local;
+	private String inicioPrevisto;
+	private String inicioCirurgia;
+	private String fimCirurgia;
+	private String saidaPrevista;
+	
+	
+}

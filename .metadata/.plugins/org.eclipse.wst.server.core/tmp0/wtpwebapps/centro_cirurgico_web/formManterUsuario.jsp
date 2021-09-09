@@ -37,7 +37,7 @@
 		<h2>Manter Usuário</h2>
 		<form name="form-usuario" id="form-usuario"
 			action="ManterUsuarioServlet" method="Post">
-		<div class="alert alert-primary col-md-6" role="alert"  id="msg"></div>
+		<div class="alert alert-primary col-md-6" role="alert" id="msg"></div>
 			<input type="hidden" id="id" name="id" value="<%=u.getId()%>">
 			
 			<div class="form-row">
@@ -126,7 +126,7 @@
 			%>
 
 		</form>
-		<br>
+		<hr>
 		
 		<script type="text/javascript">
 		

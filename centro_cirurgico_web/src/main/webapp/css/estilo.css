@@ -23,7 +23,7 @@ legend{
    font-weight: bold;
 }
 
-input[type=email], input[type=password], input[type=radio]{
+input[type=email], input[type=password], input[type=radio], input[type=text], input[type=time]{
     border: 2px solid green;
     border-radius: 5px;
 }
@@ -84,6 +84,28 @@ input[type=radio]{
     cursor: pointer;
 }
 
+.bt_acessar a{
+	color: #ffc107;	
+	border: 1px solid #ffc107;
+    border-radius: 5px;
+    padding: 2px 4px;
+    text-decoration: none;
+	float: right;  
+	margin-top: 2em;
+	margin-right: 6em;
+}
+
+.bt_acessar a:hover{
+	color: #fff;	
+	background-color: #ffc107;
+}
+
+#botao_direita a:hover{
+	 text-decoration: none;
+	 border-left: 200px;
+	 color: #fff;	 
+}
+
  ul{
     background-color: green;
     list-style-type: none;
@@ -115,8 +137,18 @@ tr{
 	cursor: pointer;
 }
 
+.operatorio{
+	background-color: #fbd972;
+}
 
+.salaCirurgia{
+	background-color: #fd5766;
+}
 
+.recuperacao{
+	background-color: #28a745;
+}
 
-
-
+.transferido{
+	background-color: #007bff;
+}
