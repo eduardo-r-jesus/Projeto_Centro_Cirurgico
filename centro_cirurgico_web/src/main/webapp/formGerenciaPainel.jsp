@@ -35,7 +35,7 @@
 		<br>
 		<h2>Gerenciar Painel dos Paciente no Centro Cirúrgico</h2>
 		<form name="form-paciente" id="form-paciente" action="GerenciarPainelServlet" method="Get">
-			<div class="alert alert-primary col-md-12" role="alert" id="msg"></div>
+			<div id="msg"></div>
 			<input type="hidden" id="id" name="id" value="<%=pai.getId()%>">
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -80,7 +80,7 @@
 						name="saidaPrevista" size="20" value="<%=pai.getSaidaPrevista()%>">
 				</div>
 			</div>
-			<input type="button" class="btn btn-primary" value="Gravar" onclick="cadastrarRegistroPainel()">
+			<input type="button" class="btn btn-primary" value="Gravar" onclick="cadastrarRegistroPainel();alertaMensagem()">
 			
 			<%
 			if (usuario == null) {
@@ -92,7 +92,7 @@
 			} else if (pai.getId() > 0) {
 			%>
 
-			<input type="button" class="btn btn-danger" value="Apagar" onclick="excluirRegistroPainel(<%=pai.getId()%>)">
+			<input type="button" class="btn btn-danger" value="Apagar" onclick="excluirRegistroPainel(<%=pai.getId()%>);alertaMensagem()">
 				
 			<%
 			} else {
@@ -111,6 +111,7 @@
 			%>
 		</form>
 		<hr>
+		
 <script type="text/javascript">
 		
 		function cadastrarRegistroPainel() {
@@ -133,7 +134,11 @@
 			out = out.replace("$inicioCirurgia",inicioCirurgia);
 			out = out.replace("$fimCirurgia",fimCirurgia);
 			out = out.replace("$saidaPrevista",saidaPrevista);
-			acessarApiServlet(out);
+			
+			if(confirm('Deseja salvar as alterações?')){
+				acessarApiServlet(out);
+			}
+			
 		}
 		
 		function excluirRegistroPainel(id){
@@ -157,11 +162,13 @@
 		if ('<%=pai.getId()%>' != 0){
 			document.querySelector("#status").value = '<%=pai.getStatus()%>';
 			}
-
-		</script>
-
-			<%@ include file="formListaPainel.jsp"%>
 		
+		function alertaMensagem() {
+			document.querySelector("#msg").className = "mens";  
+			}
+
+	</script>
+			<%@ include file="formListaPainel.jsp"%>
 		
 
 	</div>

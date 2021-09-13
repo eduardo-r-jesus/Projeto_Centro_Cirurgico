@@ -37,7 +37,7 @@
 		<h2>Manter Usuário</h2>
 		<form name="form-usuario" id="form-usuario"
 			action="ManterUsuarioServlet" method="Post">
-		<div class="alert alert-primary col-md-6" role="alert" id="msg"></div>
+		<div id="msg"></div>
 			<input type="hidden" id="id" name="id" value="<%=u.getId()%>">
 			
 			<div class="form-row">
@@ -96,7 +96,7 @@
 			<%
 			}
 			%>
-			<input type="button" class="btn btn-primary" value="Gravar" onclick="cadastrarUsuario()">
+			<input type="button" class="btn btn-primary" value="Gravar" onclick="cadastrarUsuario(); alertaMensagem()">
 			<%
 			if (usuario == null) {
 			%>
@@ -107,7 +107,7 @@
 			} else if (u.getId() > 0) {
 			%>
 
-			<input type="button" class="btn btn-danger" value="Apagar" onclick="excluirUsuario(<%=u.getId()%>)">
+			<input type="button" class="btn btn-danger" value="Apagar" onclick="excluirUsuario(<%=u.getId()%>); alertaMensagem()">
 				
 			<%
 			} else {
@@ -168,6 +168,10 @@
 			if (lsPerfil[i].value == '<%=u.getPerfil()%>') {
 					lsPerfil[i].setAttribute('checked', 'checked');
 				}
+			}
+		
+		function alertaMensagem() {
+			document.querySelector("#msg").className = "mens";  
 			}
 		
 		</script>

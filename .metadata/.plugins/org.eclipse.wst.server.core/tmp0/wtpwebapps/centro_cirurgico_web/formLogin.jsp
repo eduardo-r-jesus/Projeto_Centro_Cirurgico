@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="css/estilo.css">
 </head>
-<body>
+<body id="grad">
 	<div class="centro_img">
 	<img src="img/Bandeira_do_Distrito_Federal_Brasil.png" alt="Bandeira do Distrito Federal" height="150px">
 	</div>

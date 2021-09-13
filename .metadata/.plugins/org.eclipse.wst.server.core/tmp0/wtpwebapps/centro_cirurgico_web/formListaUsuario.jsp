@@ -14,6 +14,7 @@
 
 <h2>Listar Usuários</h2>
 
+
 <table class="table table-success table-striped table-hover">
 	<thead>
 		<tr>
@@ -31,7 +32,7 @@
 		%>
 
 		<tr
-			onclick="window.location.href = 'formManterUsuario.jsp?id=<%=us.getId()%>'" >
+			onclick="window.location.href = 'formManterUsuario.jsp?id=<%=us.getId()%>'" width="100%">
 			<td><%=us.getId()%></td>
 			<td><%=us.getEmail()%></td>
 			<td><%=us.getPerfil()%></td>

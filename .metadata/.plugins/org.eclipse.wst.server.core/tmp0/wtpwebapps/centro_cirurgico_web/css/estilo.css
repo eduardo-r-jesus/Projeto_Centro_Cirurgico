@@ -6,6 +6,7 @@ fieldset{
     border: 2px solid green;
     border-radius: 5px;
     margin-top: 40px;
+    background-color: #fff;
 }
 
 legend{
@@ -33,7 +34,7 @@ input[type=email], input[type=password], input[type=radio], input[type=text], in
     border-radius: 5px;
 }
 
-input[type=email]:focus, input[type=password]:focus{
+input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=time]:focus{
     background-color: #ffef01;
 }
 
@@ -55,10 +56,10 @@ input[type=radio]{
 .centro_img{
 	width: 15em;
 	text-align: center;
-	border: solid 1px;
-	color:yellow; 
+	
 	margin: auto;
 	margin-top: 30px;
+	padding: 5px;
 }
 
 .centro{
@@ -95,15 +96,23 @@ input[type=radio]{
 	margin-right: 6em;
 }
 
-.bt_acessar a:hover{
-	color: #fff;	
-	background-color: #ffc107;
+.bt_direita a{
+	position: relative;
+	color: #ffc107;	
+	border: 1px solid #ffc107;
+    border-radius: 5px;
+    padding: 2px 4px;
+    text-decoration: none;
+	float: right;  
+	margin-top: 2em;
+	margin-right: 6em;
 }
 
-#botao_direita a:hover{
+.bt_direita a:hover{
 	 text-decoration: none;
 	 border-left: 200px;
-	 color: #fff;	 
+	 color: #fff;	
+	 background-color:#ffc107; 
 }
 
  ul{
@@ -151,4 +160,20 @@ tr{
 
 .transferido{
 	background-color: #007bff;
+}
+
+#grad {
+  background-color: #009997; /* For browsers that do not support gradients */
+  background-image: linear-gradient(90deg, #fffb01, #009997 );
+}
+
+.mens{
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
 }

@@ -53,6 +53,7 @@ public class GerenciarPainelServlet extends HttpServlet {
 			
 			if (acao != null && acao.equals("excluir")) {
 				validar = objPnlDao.excluirRegistroPacienePainel(objPnl.getId());
+				
 				msg.put("msg", "Registro do painel excluído com sucesso!");
 			} else {
 					validar = objPnlDao.alterarRegistroPacienePainel(objPnl);

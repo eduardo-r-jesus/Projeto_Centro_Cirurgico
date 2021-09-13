@@ -1,0 +1,166 @@
+
+fieldset{
+    width: 25%;
+    height: 100%;
+    margin: auto;
+    border: 2px solid green;
+    border-radius: 5px;
+    margin-top: 40px;
+}
+
+legend{
+   font-family: Helvetica, sans-serif;
+   font-size: 16px;
+   font-weight: bold;
+}
+
+.texto{
+   margin-top: 20px;
+   margin-bottom:10px;   
+   text-align: center;
+   font-family: Helvetica, sans-serif;
+   font-size: 16px;
+   font-weight: bold;
+}
+
+input[type=email], input[type=password], input[type=radio], input[type=text], input[type=time]{
+    border: 2px solid green;
+    border-radius: 5px;
+}
+
+.borda{
+	border: 2px solid green;
+    border-radius: 5px;
+}
+
+input[type=email]:focus, input[type=password]:focus{
+    background-color: #ffef01;
+}
+
+input[type=radio]{
+	border-left: 5px;
+}
+.espacamento{
+	margin-left: 30px;
+}
+
+.larguraTexto{
+	height: 30px;
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.centro_img{
+	width: 15em;
+	text-align: center;
+	
+	margin: auto;
+	margin-top: 30px;
+	padding: 5px;
+}
+
+.centro{
+	text-align: center;
+	margin-top: 30px;
+}
+
+.bt{
+    border: 2px solid green;
+    border-radius: 5px;
+    background-color: green;
+    color: #FFF;
+    padding: 5px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 4px;
+    margin-left: 5px;
+}
+
+.bt:hover{
+    background-color: #FFF;
+    color: green;
+    cursor: pointer;
+}
+
+.bt_acessar a{
+	color: #ffc107;	
+	border: 1px solid #ffc107;
+    border-radius: 5px;
+    padding: 2px 4px;
+    text-decoration: none;
+	float: right;  
+	margin-top: 2em;
+	margin-right: 6em;
+}
+
+.bt_direita a{
+	position: relative;
+	color: #ffc107;	
+	border: 1px solid #ffc107;
+    border-radius: 5px;
+    padding: 2px 4px;
+    text-decoration: none;
+	float: right;  
+	margin-top: 2em;
+	margin-right: 6em;
+}
+
+.bt_direita a:hover{
+	 text-decoration: none;
+	 border-left: 200px;
+	 color: #fff;	
+	 background-color:#ffc107; 
+}
+
+ ul{
+    background-color: green;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li{
+    float: left;
+}
+
+li a {
+	display: inline-block;
+    color:#FFF;
+    padding: 16px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: yellow;
+    color:green;
+    text-decoration: none;
+}
+
+tr{
+	cursor: pointer;
+}
+
+.operatorio{
+	background-color: #fbd972;
+}
+
+.salaCirurgia{
+	background-color: #fd5766;
+}
+
+.recuperacao{
+	background-color: #28a745;
+}
+
+.transferido{
+	background-color: #007bff;
+}
+
+#grad {
+  background-image: linear-gradient(to left, rgba(198,226,205,1), rgba(190,223,216,0) );
+}

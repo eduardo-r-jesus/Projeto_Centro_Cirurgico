@@ -25,7 +25,7 @@ PrintWriter saida = response.getWriter();
 		<tr>
 			<th>Nome do Paciente</th>
 			<th>Status</th>
-			<th>Início Prevísto</th>
+			<th>Início Previsto</th>
 			<th>Início Cirurgia</th>
 			<th>Fim Cirurgia</th>
 			<th>Saída Prevísta</th>
@@ -85,3 +85,4 @@ PrintWriter saida = response.getWriter();
 		}
 		%>
 </table>
+

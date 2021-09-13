@@ -15,7 +15,7 @@
     	if(us != null){ %>
     		<%@ include file="menu.jsp" %>
     	<%	} else { %>
-    		<span class="bt_acessar" id="botao_direita"><a href="formLogin.jsp" >Acessar</a></span>
+    		<span class="bt_direita"><a href="formLogin.jsp" >Acessar</a></span>
 		<%	} 
 %>
 
